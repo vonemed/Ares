@@ -1,4 +1,14 @@
-struct Core
+#include <memory>
+
+namespace ares
 {
-	void dummy();
-};
+	struct Core
+	{
+		static std::shared_ptr<Core> initialize();
+
+		void Start();
+
+	private:
+		Core();
+	};
+}

@@ -3,44 +3,43 @@ project(ARES)
 
 include_directories(
 	src
-	contrib
 )
 
 if(MSVC)
-  include_directories(
-    #contrib/msvc-windows-x86/glew/include
-    contrib/msvc-windows-x86/SDL2/include
-  )
+	include_directories(
+		contrib/msvc-windows-x86_64/glew/include
+	)
+	
+	link_directories(
+	${PROJECT_SOURCE_DIR}/contrib/msvc-windows-x86_64/glew/lib
+)
+endif()
 
-  link_directories(
-    contrib/msvc-windows-x86/SDL2/lib
-    #${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/lib
-  )
+add_definitions(-DSDL_MAIN_HANDLED)
+
+add_library(rend
+  src/rend/Exception.cpp
+  src/rend/Context.cpp
+  src/rend/Texture.cpp
+  src/rend/RenderTexture.cpp
+  src/rend/Shader.cpp
+  src/rend/Buffer.cpp
+  src/rend/Mesh.cpp
+  src/rend/Util.cpp
+)
+
+if(MSVC OR MINGW)
+  target_link_libraries(rend glew32 opengl32)
 else()
-  include_directories(
-    /usr/X11R6/include
-    /usr/local/include
-  )
-
-  link_directories(
-    /usr/X11R6/lib
-    /usr/local/lib
-  )
+  target_link_libraries(rend GLEW GL)
 endif()
 
 add_library(ares 
 	src/ares/Core.cpp
+	src/ares/Core.h
 )
 
-if(MSVC)
-  target_link_libraries(ares
-    SDL2 
-  )
-else()
-  target_link_libraries(ares
-    SDL2 
-  )
-endif()
+target_link_libraries(ares rend)
 
 add_executable(demo
 	src/demo/main.cpp
