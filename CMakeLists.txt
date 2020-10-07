@@ -37,6 +37,10 @@ endif()
 add_library(ares 
 	src/ares/Core.cpp
 	src/ares/Core.h
+	src/ares/Entity.h
+	src/ares/Entity.cpp
+	src/ares/Component.h
+	src/ares/Component.cpp
 )
 
 target_link_libraries(ares rend)
