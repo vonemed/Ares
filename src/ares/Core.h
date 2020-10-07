@@ -9,6 +9,7 @@ namespace ares
 		static std::shared_ptr<Core> initialize();
 
 		void Start();
+		std::shared_ptr<Entity> addEntity();
 
 	private:
 		Core();

@@ -41,6 +41,7 @@ add_library(ares
 	src/ares/Entity.cpp
 	src/ares/Component.h
 	src/ares/Component.cpp
+	src/ares/ares.h
 )
 
 target_link_libraries(ares rend)

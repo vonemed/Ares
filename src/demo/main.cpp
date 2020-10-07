@@ -1,16 +1,14 @@
-#include <ares/Core.h>
+#include <ares/ares.h>
 #include <iostream>
-
-#define WINDOW_WIDTH 640;
-#define WINDOW_HEIGHT 480;
 
 using namespace ares;
 
 int main()
 {
-	std::cout << "Hello World" << std::endl;
-	
 	std::shared_ptr<Core> core = Core::initialize();
+
+	std::shared_ptr<Entity> pe = core->addEntity();
+	//std::shared_ptr<Component> pc = pe->addComponent<Component>();
 
 	core->initialize();
 
