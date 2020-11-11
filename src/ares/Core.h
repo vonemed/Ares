@@ -1,18 +1,36 @@
+#include <SDL2/SDL.h>
+#include <rend/rend.h>
+
 #include <memory>
 #include <vector>
 
-namespace ares
+namespace myengine
 {
+	struct Renderer;
 	struct Entity;
+	struct Screen;
+
+
 	struct Core
 	{
-		static std::shared_ptr<Core> initialize();
+		friend struct myengine::Renderer;
 
-		void Start();
-		std::shared_ptr<Entity> addEntity();
+		static std::shared_ptr<Core> initialize(); // Static - To initialize the core only once
+
+		std::shared_ptr<Entity> addEntity(); // To create an entity and add it to the list
+
+		void start();
 
 	private:
-		Core();
-		std::vector<std::shared_ptr<Entity>> entities;
+
+		std::vector<std::shared_ptr<Entity>> entities; // A list of entities
+		std::weak_ptr<Core> self; // so that components could access core
+
+		//Graphics
+		SDL_Window* window; // The SDL window
+		SDL_GLContext glContext;
+		std::shared_ptr<rend::Context> context;
+
 	};
+
 }
