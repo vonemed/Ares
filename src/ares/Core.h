@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-namespace myengine
+namespace ares
 {
 	struct Renderer;
 	struct Entity;

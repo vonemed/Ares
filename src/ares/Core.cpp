@@ -3,7 +3,7 @@
 #include "Transform.h"
 #include "Exception.h"
 
-namespace myengine
+namespace ares
 {
 
     // Initializing the core

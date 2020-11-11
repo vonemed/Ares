@@ -1,7 +1,7 @@
 #include <vector>
 #include <memory>
 
-namespace myengine
+namespace ares
 {
 
     struct Component;
