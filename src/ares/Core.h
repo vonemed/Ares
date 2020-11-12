@@ -13,7 +13,7 @@ namespace ares
 
 	struct Core
 	{
-		friend struct myengine::Renderer;
+		friend struct ares::Renderer;
 
 		static std::shared_ptr<Core> initialize(); // Static - To initialize the core only once
 
