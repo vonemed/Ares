@@ -9,7 +9,7 @@ namespace ares
 
     struct Entity
     {
-        friend struct ::myengine::Core;
+        friend struct ::ares::Core;
 
         template <typename T>
         std::shared_ptr<T> addComponent()
