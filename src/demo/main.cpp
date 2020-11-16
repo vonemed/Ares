@@ -14,7 +14,7 @@ int main()
 	// Add a component 
 	std::shared_ptr<Component> pc = pe->addComponent<Component>();
 
-	core->Start();
+	core->start();
 
 	const GLfloat positions[] = {
 		0.0f, 0.5f, 0.0f,

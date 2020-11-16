@@ -1,5 +1,5 @@
 #ifndef ARES_COMPONENT_H // If not defined by compiler
-#define ARES_COOMPONENT_H
+#define ARES_COMPONENT_H
 
 #include <memory>
 
