@@ -5,7 +5,7 @@
 
 namespace ares
 {
-
+    
     // Initializing the core
     std::shared_ptr<Core> Core::initialize()
     {
