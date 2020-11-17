@@ -8,6 +8,8 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Renderer.h"
+#include "Transform.h"
+#include "Keyboard.h"
 
 using namespace ares;
 
