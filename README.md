@@ -1,2 +1,0 @@
-# Ares
-Ares game engine

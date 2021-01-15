@@ -4,51 +4,55 @@
 namespace ares
 {
 
-    struct Component;
-    struct Core;
+struct Component;
+struct Core;
+struct Transform;
 
-    struct Entity
-    {
-        friend struct ::ares::Core;
+struct Entity
+{
+  friend struct ::ares::Core;
 
-        template <typename T>
-        std::shared_ptr<T> addComponent()
-        {
-            std::shared_ptr<T> rtn = std::make_shared<T>();
-            rtn->entity = self;
+  // Template functions
 
-            components.push_back(rtn);
+  template <typename T>
+  std::shared_ptr<T> addComponent()
+  {
+    std::shared_ptr<T> rtn = std::make_shared<T>();
+    rtn->entity = self;
 
-            rtn->onInitialize();
+    components.push_back(rtn);
 
-            return rtn;
-        }
+    rtn->onInitialize();
 
-        template <typename T> // Template function
-        std::shared_ptr<T> getComponent()
-        {
-            for (size_t i = 0; i < components.size(); i++)
-            {
-                std::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(components(i)); // Trying to convert every other component to the requested one
+    return rtn;
+  }
 
-                if (!rtn) continue; // If rtn equals NULL - then continue iteration
+  template <typename T> 
+  std::shared_ptr<T> getComponent()
+  {
+      for (size_t i = 0; i < components.size(); i++)
+      {
+          std::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(components.at(i)); // Trying to convert every other component to the requested one
 
-                return rtn; // Once found it - return it
-            }
+          if (!rtn) continue; // If rtn equals NULL - then continue iteration
 
-            throw std::exception "Error: couldn't find the rquested type";
-        }
+          return rtn; // Once found it - return it
+      }
 
-        void tick();
-        void render();
+      throw std::exception ("Error: couldn't find the rquested type");
+  }
 
-        std::shared_ptr<Core> getCore();
+  void tick();
+  void render();
 
-    private:
-        std::vector<std::shared_ptr<Component>> components;
-        std::weak_ptr<Core> core;
-        std::weak_ptr<Entity> self;
+  std::shared_ptr<Core> getCore();
+  std::shared_ptr<Transform> getTransform();
 
-    };
+private:
+  std::vector<std::shared_ptr<Component>> components;
+  std::weak_ptr<Core> core;
+  std::weak_ptr<Entity> self;
+
+};
 
 }

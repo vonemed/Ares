@@ -3,7 +3,7 @@
 
 #include <rend/rend.h>
 
-namespace myengine
+namespace ares
 {
 	struct Transform : public Component
 	{
@@ -12,10 +12,12 @@ namespace myengine
 
 		void setPosition(glm::vec3 _position);
 		void setRotation(glm::vec3 _rotation);
-		void setScale();
 
+		void translate(float x, float y, float z);
+		void rotate(float x, float y, float z);
 
 	private:
+
 		glm::vec3 position;
 		glm::vec3 rotation;
 		glm::vec3 scale;

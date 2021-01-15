@@ -10,6 +10,7 @@
 #include "Renderer.h"
 #include "Transform.h"
 #include "Keyboard.h"
+#include "Camera.h"
 
 using namespace ares;
 

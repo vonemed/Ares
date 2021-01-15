@@ -1,31 +1,36 @@
-#ifndef ARES_COMPONENT_H // If not defined by compiler
+#ifndef ARES_COMPONENT_H // if not defiened by comlier
 #define ARES_COMPONENT_H
 
 #include <memory>
 
 namespace ares
 {
-	struct Entity;
-	struct Core;
 
-	struct Component
-	{
-		friend struct ares::Entity;
+struct Entity;
+struct Core;
+struct Transform;
 
-		virtual void onInitialize();
+struct Component
+{
+  friend struct ares::Entity;
 
-		void tick();
-		virtual void onTick();
+  virtual void onInitialize();
 
-		void render();
-		virtual void onRender();
+  void tick();
+  virtual void onTick();
 
-		std::shared_ptr<Entity> getEntity();
-		std::shared_ptr<Core> getCore();
+  void render();
+  virtual void onRender();
 
-	private:
-		std::weak_ptr<Entity> entity;
-	};
+  std::shared_ptr<Entity> getEntity();
+  std::shared_ptr<Core> getCore();
+  std::shared_ptr<Transform> getTransform();
+
+private:
+  std::weak_ptr<Entity> entity;
+
+};
+
 }
 
 #endif

@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 project(ARES)
 
-set(CMAKE_EXECUTABLE_SUFFIX ".html")
-
 string(TOLOWER "${CMAKE_CXX_COMPILER_ID}" COMP)
 string(TOLOWER "${CMAKE_SYSTEM_NAME}" PLATFORM)
 string(TOLOWER "${CMAKE_SYSTEM_PROCESSOR}" ARCH)
@@ -23,11 +21,14 @@ if(MINGW)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s -static")
   add_definitions(-DGLEW_STATIC)
   set(STATIC_LIBS imm32 iconv winmm ole32 gdi32 oleaut32 version)
-  set(LIBGLEW glew32)
   set(LIBSDL2 SDL2)
+  set(LIBGL opengl32)
+  set(LIBGLEW glew32)
+
 elseif(MSVC)
   add_definitions(-DGLEW_STATIC)
   set(STATIC_LIBS imm32 winmm setupapi version)
+  set(LIBGL opengl32)
   set(LIBGLEW glew32s)
   set(LIBSDL2 SDL2-static)
 endif()
@@ -55,10 +56,9 @@ add_library(ares
   src/ares/Exception.cpp
   src/ares/Renderer.cpp
   src/ares/Transform.cpp
-  src/ares/Resource.cpp
-  src/ares/Texture.cpp
   src/ares/Screen.cpp
   src/ares/Keyboard.cpp
+  src/ares/Camera.cpp
 
   src/ares/Core.h
   src/ares/Entity.h
@@ -66,10 +66,9 @@ add_library(ares
   src/ares/Exception.h
   src/ares/Renderer.h
   src/ares/Transform.h
-  src/ares/Resource.h
-  src/ares/Texture.h
   src/ares/Screen.h
   src/ares/Keyboard.h
+  src/ares/Camera.h
   src/ares/ares.h
 )
 target_link_libraries(ares rend ${LIBSDL2} ${STATIC_LIBS})
